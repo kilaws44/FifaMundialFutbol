@@ -22,10 +22,7 @@ public class RondaSessionBean {
 
     @PersistenceContext(unitName = "FifaMundialFutbol-ejbPU")
     private EntityManager em;
-
-
-    
-    public List<Ronda> obtenerRonda() {
+   public List<Ronda> obtenerRonda() {
         try {
             javax.persistence.Query q= em.createNamedQuery("Ronda.findAll");
             return q.getResultList();
@@ -35,8 +32,7 @@ public class RondaSessionBean {
     }
     
     
-    
-    public Ronda obtenerronda(int idRonda) {
+    public Ronda obtenerRonda(int idRonda) {
         try {
             em.getEntityManagerFactory().getCache().evict(Ronda.class);
             Ronda r = em.find(Ronda.class, idRonda);
@@ -61,7 +57,7 @@ public class RondaSessionBean {
         try {
             Ronda r = new Ronda();
           r.setNombre(nombre);
-            em.persist(r);
+             em.persist(r);
             em.flush();
             return true;
         } catch (Exception e) {
@@ -69,10 +65,11 @@ public class RondaSessionBean {
         }
     }
     
-    public boolean modificarRonda(int idRonda,String nombre) {
+    public boolean modificarRonda(int idRonda, String nombre) {
         try {
             Ronda r = em.find(Ronda.class, idRonda);
             r.setNombre(nombre);
+          
             em.merge(r);
             em.flush();
             return true;
@@ -80,7 +77,6 @@ public class RondaSessionBean {
             return false;
         }
     }
-
     public void persist(Object object) {
         em.persist(object);
     }

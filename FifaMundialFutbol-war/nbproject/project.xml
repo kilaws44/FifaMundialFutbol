@@ -10,11 +10,11 @@
                     <file>${reference.FifaMundialFutbol-ejb.dist}</file>
                 </library>
                 <library dirs="200">
-                    <file>${file.reference.primefaces-5.2-sources.jar}</file>
+                    <file>${file.reference.primefaces-6.0-sources.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${file.reference.primefaces-5.2.jar}</file>
+                    <file>${file.reference.primefaces-6.0.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
             </web-module-libraries>
