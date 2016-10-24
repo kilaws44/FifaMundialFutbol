@@ -69,7 +69,7 @@ public class RondaSessionBean {
         try {
             Ronda r = em.find(Ronda.class, idRonda);
             r.setNombre(nombre);
-          
+          r.setIdRonda(0);
             em.merge(r);
             em.flush();
             return true;

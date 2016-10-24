@@ -37,12 +37,6 @@ public class RondaJSFManagedBean implements Serializable {
      */
     public RondaJSFManagedBean() {
     }
-public String eliminar(int idRonda) {
-        this.rondaSessionBean.borrarRonda(getIdRonda());
-        this.setRonda(null);
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Ronda eliminada con exito", ""));
-        return null;
-    }
 
     
 
@@ -101,11 +95,18 @@ public String eliminar(int idRonda) {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-public String verEditar(boolean ver, int idAlumno, String nombre) {
-        this.setEditar(ver);
-        this.setIdRonda(idAlumno);
-        this.setNombre(nombre);
-        
+    public String verEditar(boolean ver, int idRonda, String nombre) {
+        this.editar = ver;
+        this.idRonda = idRonda;
+        this.nombre = nombre;
+       
+        return null;
+    }
+
+    public String eliminar(int idRonda) {
+        this.rondaSessionBean.borrarRonda(getIdRonda());
+        this.setRonda(null);
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Ronda eliminada con exito", ""));
         return null;
     }
 

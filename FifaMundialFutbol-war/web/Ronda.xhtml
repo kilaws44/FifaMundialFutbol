@@ -18,19 +18,19 @@
                         Buscar Ronda
                     </f:facet>
                     <h:outputLabel value="Nombre     " for="txtBuscarNombre"/>
-                    <p:inputText value="#{rondaJSFManagedBean.nombre}" id="txtBuscarNombre"/>
+                    <p:inputText value="#{RondaJSFManagedBean.nombre}" id="txtBuscarNombre"/>
                     <p:commandButton value="Buscar" 
                                      icon="ui-icon-search" 
                                      update="tablaRo"
                                      >
-                        <f:setPropertyActionListener value="#{null}" target="#{rondaJSFManagedBean.ronda}" />                                         
+                        <f:setPropertyActionListener value="#{null}" target="#{RondaJSFManagedBean.ronda}" />                                         
                     </p:commandButton>
             </p:panelGrid>
             
             <br />
             
             
-            <p:dataTable value="#{rondaJSFManagedBean.ronda}" 
+            <p:dataTable value="#{RondaJSFManagedBean.ronda}" 
                          var="item"
                          id="tablaRo"
                          paginator="true"
@@ -43,10 +43,10 @@
                 </p:column>
                     <p:column headerText="">
                     <p:commandButton value="Eliminar"
-                                     action="#{rondaJSFManagedBean.eliminar(item.idRonda)}"
+                                     action="#{RondaJSFManagedBean.eliminar(item.idRonda)}"
                                      update="tablaRo msj"/>
                     
-                    <p:commandButton action="#{rondaJSFManagedBean.verEditar(true, itemidAlumno, item.nombre)}"
+                    <p:commandButton action="#{RondaJSFManagedBean.verEditar(true, itemidAlumno, item.nombre)}"
                                      value="Editar"
                                      icon="ui-icon-search" 
                                      update="panelEditarRonda"
@@ -55,29 +55,28 @@
                     
                 </p:column>
             </p:dataTable>  
-            <p:commandButton                 value="Agregar"
-                             action="#{rondaJSFManagedBean.verEditar(true, -1, null)}"
-                             update="panelEditarRonda"
+            <p:commandButton value="Agregar"
+                             action="#{rondaJSFManagedBean.verEditar(true, -1,null)}"                            update="panelEditarRonda"
                              icon="ui-icon-check" />
 
 
             <h:panelGroup id="panelEditarRonda">
-                <p:panelGrid columns="3" rendered="#{rondaJSFManagedBean.editar}">
+                <p:panelGrid columns="3" rendered="#{RondaJSFManagedBean.ronda}">
                     <f:facet name="header">
                         Editar Ronda
                     </f:facet>
                     <h:outputLabel value="Nombre: *" for="txtNombre"/>
-                    <p:inputText value="#{rondaJSFManagedBean.nombre}" id="txtNombre" required="true" requiredMessage="Ingrese Nombre"/>
+                    <p:inputText value="#{RondaJSFManagedBean.nombre}" id="txtNombre" required="true" requiredMessage="Ingrese Nombre"/>
                     <h:outputLabel value="Nombre *" for="txtNombre"/>
                     
                     <f:facet name="footer">
                   
                     <p:commandButton value="Guardar"
-                          action="#{rondaJSFManagedBean.guardarRonda()}"
+                          action="#{RondaJSFManagedBean.guardarRonda()}"
                                          update="tablaRo panelEditarRonda msj"
                                          />
                         <p:commandButton value="Cerrar" 
-                                         action="#{rondaJSFManagedBean.verEditar(false, -1,null)}"
+                                         action="#{RondaJSFManagedBean.verEditar(false, -1,null)}"
                  
                                          update="panelEditarRonda"
                                          immediate="true"
