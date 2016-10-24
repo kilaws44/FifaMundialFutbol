@@ -5,6 +5,8 @@
  */
 package com.fifa.negocio;
 
+import com.fifa.datos.Ronda;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 import javax.persistence.EntityManager;
@@ -20,6 +22,64 @@ public class RondaSessionBean {
 
     @PersistenceContext(unitName = "FifaMundialFutbol-ejbPU")
     private EntityManager em;
+
+
+    
+    public List<Ronda> obtenerRonda() {
+        try {
+            javax.persistence.Query q= em.createNamedQuery("Ronda.findAll");
+            return q.getResultList();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    
+    
+    
+    public Ronda obtenerronda(int idRonda) {
+        try {
+            em.getEntityManagerFactory().getCache().evict(Ronda.class);
+            Ronda r = em.find(Ronda.class, idRonda);
+            return r;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    
+    public boolean borrarRonda(int idRonda) {
+        try {
+            em.getEntityManagerFactory().getCache().evict(Ronda.class);
+            Ronda r = em.find(Ronda.class, idRonda);
+            em.remove(r);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+    
+    public boolean agregarRonda(String nombre) {
+        try {
+            Ronda r = new Ronda();
+          r.setNombre(nombre);
+            em.persist(r);
+            em.flush();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+    
+    public boolean modificarRonda(int idRonda,String nombre) {
+        try {
+            Ronda r = em.find(Ronda.class, idRonda);
+            r.setNombre(nombre);
+            em.merge(r);
+            em.flush();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 
     public void persist(Object object) {
         em.persist(object);
