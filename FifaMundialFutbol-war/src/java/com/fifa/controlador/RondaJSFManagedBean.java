@@ -37,33 +37,89 @@ public class RondaJSFManagedBean implements Serializable {
      */
     public RondaJSFManagedBean() {
     }
-public String eliminar(int idAlumno) {
-        this.rondaSessionBean.borrarRonda(idRonda);
-        this.ronda = null;
+public String eliminar(int idRonda) {
+        this.rondaSessionBean.borrarRonda(getIdRonda());
+        this.setRonda(null);
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Ronda eliminada con exito", ""));
         return null;
     }
 
-    public String verEditar(boolean ver, int idAlumno, String nombre, String apellido, String legajo) {
-        this.editar = ver;
-        this.idRonda = idAlumno;
+    
+
+    /**
+     * @return the ronda
+     */
+    public List<Ronda> getRonda() {
+        return ronda;
+    }
+
+    /**
+     * @param ronda the ronda to set
+     */
+    public void setRonda(List<Ronda> ronda) {
+        this.ronda = ronda;
+    }
+
+    /**
+     * @return the editar
+     */
+    public boolean isEditar() {
+        return editar;
+    }
+
+    /**
+     * @param editar the editar to set
+     */
+    public void setEditar(boolean editar) {
+        this.editar = editar;
+    }
+
+    /**
+     * @return the idRonda
+     */
+    public int getIdRonda() {
+        return idRonda;
+    }
+
+    /**
+     * @param idRonda the idRonda to set
+     */
+    public void setIdRonda(int idRonda) {
+        this.idRonda = idRonda;
+    }
+
+    /**
+     * @return the nombre
+     */
+    public String getNombre() {
+        return nombre;
+    }
+
+    /**
+     * @param nombre the nombre to set
+     */
+    public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+public String verEditar(boolean ver, int idAlumno, String nombre) {
+        this.setEditar(ver);
+        this.setIdRonda(idAlumno);
+        this.setNombre(nombre);
         
         return null;
     }
 
-    public String guardarAlumno() {
-        if (this.idRonda == -1) {
-            this.rondaSessionBean.agregarRonda(nombre);
+    public String guardarRonda() {
+        if (this.getIdRonda() == -1) {
+            this.rondaSessionBean.agregarRonda(getNombre());
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Ronda agregada con exito", ""));
         } else {
-            this.rondaSessionBean.modificarRonda(idRonda, nombre);
+            this.rondaSessionBean.modificarRonda(getIdRonda(), getNombre());
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Ronda modificada con exito", ""));
         }
-        this.editar = false;
-        this.ronda = null;
+        this.setEditar(false);
+        this.setRonda(null);
         return null;
     }
-
     
 }
