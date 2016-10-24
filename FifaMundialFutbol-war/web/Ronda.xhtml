@@ -17,7 +17,7 @@
                 <f:facet name="header">
                         Buscar Ronda
                     </f:facet>
-                    <h:outputLabel value="Apellido: " for="txtBuscarNombre"/>
+                    <h:outputLabel value="Nombre     " for="txtBuscarNombre"/>
                     <p:inputText value="#{rondaJSFManagedBean.nombre}" id="txtBuscarNombre"/>
                     <p:commandButton value="Buscar" 
                                      icon="ui-icon-search" 
@@ -55,14 +55,14 @@
                     
                 </p:column>
             </p:dataTable>  
-            <p:commandButton value="Agregar"
+            <p:commandButton                 value="Agregar"
                              action="#{rondaJSFManagedBean.verEditar(true, -1, null)}"
                              update="panelEditarRonda"
                              icon="ui-icon-check" />
 
 
             <h:panelGroup id="panelEditarRonda">
-                <p:panelGrid columns="2" rendered="#{rondaJSFManagedBean.editar}">
+                <p:panelGrid columns="3" rendered="#{rondaJSFManagedBean.editar}">
                     <f:facet name="header">
                         Editar Ronda
                     </f:facet>
@@ -73,7 +73,7 @@
                     <f:facet name="footer">
                   
                     <p:commandButton value="Guardar"
-                                                        action="#{rondaJSFManagedBean.guardarRonda()}"
+                          action="#{rondaJSFManagedBean.guardarRonda()}"
                                          update="tablaRo panelEditarRonda msj"
                                          />
                         <p:commandButton value="Cerrar" 
